@@ -1,0 +1,12 @@
+<html>
+<head>
+    <title>Form</title>
+</head>
+<body style="background-color:grey;">
+<h2>Click this button to fill the form</h2>
+<form action="{% url 'form' %}">
+    {% csrf_token %}
+    <button type="submit">Form</button>
+</form>
+</body>
+</html>

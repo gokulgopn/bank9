@@ -1,0 +1,16 @@
+<html>
+<head>
+  <title>Login</title>
+</head>
+<h1>Login </h1>
+<body style="background-color:grey;">
+<form action="#" method="post">
+  {% csrf_token %}
+  <input type="text" name="username" id="username" placeholder="Enter your username"><br>
+  <input type="password" name="password" id="password" placeholder="Enter your password"><br>
+  <button type="submit">Submit</button><br>
+
+  <a class="btn btn-primary" href="{% url 'register' %}" role="link">Click here to Register</a>
+</form>
+</body>
+</html>

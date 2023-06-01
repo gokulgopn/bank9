@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+
+    $(document).ready(function() {
+  // Data source for the dependent options
+  var dependentOptions = {
+    Kazargod: ["Nileshwar", "Uppala", "Kumbla"],
+    Kannur: ["Anthoor", "Azhikode", "Azhikkal"],
+    Wayanad: ["Kalpetta", "Vythiri", "Sulthan Bathery"],
+    Kozhikode: ["Koduvally", "Koyilandy", "Azhiyur"],
+    Malappuram: ["Ariyallur", "Alamkod", "Edappal"],
+    Palakkad: ["Kalpathy", "Kanjikode", "Ayyapuram"],
+    Thrissur: ["Brahmakulam", "Chalakudy", "Manalur"],
+    Ernakulam: ["Aluva", "Perumbavoor", "Piravam"],
+    Idukki: ["Kattappana", "Chettukuzhy", "Pothinkandam"],
+    Kottayam: ["Ettumanoor", "Pala", "Peroor"],
+    Alappuzha: ["Cherthala", "Aroor", "Mavelikkara"],
+    Pathanamthitta: ["Ranni", "Konni", "Pandalam"],
+    Kollam: ["Kundara", "Kottarakkara", "Perinad"],
+    Thiruvananthapuram: ["Kilimanoor", "Varkala", "Attingal"]
+  };
+
+  // Event listener for the parent dropdown
+  $('#parent-dropdown').on('change', function() {
+    var selectedValue = $(this).val();
+    var $dependentDropdown = $('#dependent-dropdown');
+
+    // Clear previous options
+    $dependentDropdown.empty();
+
+    // Populate dependent dropdown based on selected value
+    if (selectedValue !== '') {
+      var options = dependentOptions[selectedValue];
+      options.forEach(function(option) {
+        $dependentDropdown.append($('<option>').text(option).val(option));
+      });
+    }
+  });
+});
+
+
+</script>
+
+
+
+
+</head>
+
+<body style="background-color:grey; margin-left:45%;">
+
+<h1>Fill the form</h1>
+
+<form name="form1" id="form1" action="{% url 'final' %}">
+    <input type="text" placeholder="Name" style="width:198px;" required><br><br>
+
+    <input type="date" placeholder="DOB" style="width:198px;" required><br><br>
+
+    <input type="number" placeholder="Age" style="width:198px;" required><br><br>
+
+    <label for="gender" >Gender:</label>
+    <input type="radio" name="gender" value="male"> Male
+    <input type="radio" name="gender" value="female"> Female
+
+    <br><br>
+
+
+    <input type="number" placeholder="Phone Number" style="width:198px;" required><br><br>
+
+    <input type="email" placeholder="Email" style="width:198px;" required><br><br>
+
+    <input type="text" placeholder="Address" style="height:50px; width:198px;" required><br><br>
+
+
+
+<label>District:</label>
+<select id="parent-dropdown" required>
+  <option value="">Select your district</option>
+  <option value="Kazargod">Kazargod</option>
+  <option value="Kannur">Kannur</option>
+  <option value="Wayanad">Wayanad</option>
+  <option value="Kozhikode">Kozhikode</option>
+  <option value="Malappuram">Malappuram</option>
+  <option value="Palakkad">Palakkad</option>
+  <option value="Thrissur">Thrissur</option>
+  <option value="Ernakulam">Ernakulam</option>
+  <option value="Idukki">Idukki</option>
+  <option value="Kottayam">Kottayam</option>
+  <option value="Alappuzha">Alappuzha</option>
+  <option value="Pathanamthitta">Pathanamthitta</option>
+  <option value="Kollam">Kollam</option>
+  <option value="Thiruvananthapuram">Thiruvananthapuram</option>
+
+</select>
+<br><br>
+<label>Branch:</label>
+<select id="dependent-dropdown" required>
+  <option value="">Select your district first</option>
+</select>
+
+
+        <br><br>
+            <label for="account">Account:</label>
+    <select name="account" required>
+        <option value="">Account Type</option>
+        <option value="saving">Savings Account</option>
+        <option value="current">Current Account</option>
+        <option value="salary">Salary Account</option>
+        <option value="nri">NRI Account</option>
+    </select><br><br>
+
+<header>Materials provide:</header>
+
+    <input type="checkbox" id="debit" name="option" value="debitcard">
+    <label for="debitcard">Debitcard</label><br>
+    <input type="checkbox" id="credit" name="option" value="creditcard">
+    <label for="creditcard">Creditcard</label><br>
+    <input type="checkbox" id="checkb" name="option" value="checkbook">
+    <label for="checkbook">CheckBook</label><br><br>
+
+            <button type="submit">Submit</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+
+
+
+<a href="{% url 'home' %}">
+    <button type="button">Logout</button>
+</a>
+
+
+
+</form>
+
+<script>
+    document.getElementById("form1").addEventListener("submit", function(event) {
+  var checkboxes = document.querySelectorAll('input[name="option"]:checked');
+
+  if (checkboxes.length !== 1) {
+    alert("Please select the materials provide.");
+    event.preventDefault(); // Prevent form submission
+  }
+});
+</script>
+
+<script>
+    document.getElementById("form1").addEventListener("submit", function(event) {
+  var genderRadios = document.querySelectorAll('input[name="gender"]:checked');
+
+  if (genderRadios.length === 0) {
+    alert("Please select your gender.");
+    event.preventDefault(); // Prevent form submission
+  }
+});
+</script>
+
+
+
+</body>
+</html>
